@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Fix "reverse accessor" errors
+AUTH_USER_MODEL = "inventory.User"
+
 
 # Application definition
 
