@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} — {% endblock %}Django Delights</title>
+</head>
+<body>
+    <nav>
+            {% if request.user.is_authenticated %}
+                Logo1
+            {% else %}
+                Logo2
+            {% endif %}
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    {% if request.path == "login"}
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+                {% endif %}
+                <li><a href="#">Contact</a></li>
+            </ul>
+    </nav>
+</body>
+</html>
