@@ -1,0 +1,63 @@
+@media only screen and (max-width: 800px) {
+    .navbar-nav {
+        flex-direction: row !important;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        .nav-item {
+            font-size: 16px;
+            margin: 0 5px;
+        }
+    }
+    #app {
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        nav {
+            justify-content: center;
+            button {
+                font-size: 14px;
+                padding: 2px 7px;
+            }
+            button:not(:last-child) {
+                margin-right: 5px;
+            }
+        }
+        .recipe-button {
+            font-size: 14px;
+        }
+        #interface {
+            padding: 0;
+        }
+        #interface > div {
+            justify-content: space-around !important;
+            margin: 0;
+            overflow-y: scroll;
+            div {
+                height: 80%;
+            }
+        }
+    }
+    #acc {
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        #register {
+            input {
+                padding: 4px 4px;
+                margin: 5px 15px;
+            }
+        }
+        #login {
+            input {
+                padding: 10px 5px;
+                margin: 15px 15px;
+            }
+        }
+    }
+    .card-img-top {
+        width: 100%;
+        height: 20vh;
+        object-fit: cover;
+    }
+}

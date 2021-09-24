@@ -1,0 +1,167 @@
+@import "variables";
+@import "mixins";
+@import "placeholders";
+
+html {
+    min-height: 100%;
+    background: url("../images/bottom_graphics.svg") no-repeat center bottom;
+    background-size: 100%;
+    overflow: hidden;
+}
+
+
+
+#logo {
+    @extend %gradient-text;
+    background-image: linear-gradient(#337500, #43648A);
+    font-family: $default-font;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+#app {
+    @include content-box;
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+    }
+    button {
+        @extend %boxshadow-effect;
+        color: white;
+        background: linear-gradient(90deg, #337500 -25.6%, rgba(0, 26, 255, 0.5) 125.4%);
+        border: none;
+        outline: none;
+        border-radius: 12px;
+        font-size: 1.75rem;
+        padding: 3px 1.2em;
+        font-family: $default-font;
+        font-weight: 600;
+        text-align: center;
+    }
+    #interface {
+        height: 83%;
+        width: 100%;
+        border-radius: 3px;
+        padding: 1rem 3rem;
+        div {
+            height: 100%;
+            overflow: auto;
+            li {
+                padding-left: 2rem;
+                padding-right: 0.5rem;
+                font-size: 1.2rem;
+            }
+            li:not(:last-child) {
+                padding-bottom: 12px;
+            }
+            .card {
+                height: 90%;
+            }
+        }
+    }
+    .recipe-button {
+        color: white;
+        font-size: 1.1rem;
+        background: radial-gradient(160.36% 894.43% at -24.55% 50%, #4767be 0%, rgba(41, 56, 187, 0.8) 100%);
+        border-radius: 10px;
+        opacity: 90%;
+        transition: opacity 300ms;
+        &:hover, &:focus {
+            opacity: 100%;
+        }
+    }
+}
+
+#acc {
+    @include content-box($width: 700px);
+    svg {
+        display: block;
+        margin: 0 auto 1rem auto;
+    }
+    h1, h5 {
+        text-align: center;
+        font-family: $default-font;
+    }
+    h1 { 
+        font-weight: 500;
+        font-size: 2.25rem;
+    }
+    h5 {
+        font-size: 0.7rem;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        button {
+            @extend %boxshadow-effect;
+            color: white;
+            font-family: $default-font;
+            font-size: 1.5rem;
+            background: radial-gradient(160.36% 894.43% at -24.55% 50%, #4F306A 0%, rgba(106, 67, 139, 0.8) 100%);
+            border: none;
+            border-radius: 12px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 150px;
+            align-self: center;
+        }
+    }
+    input {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        padding: 5px;
+        outline: 0;
+    }
+    #register {
+        input {
+            padding: 7px 5px;
+            margin: 8px 0;
+        }
+    }
+    #login {
+        input {
+            padding: 10px 5px;
+            margin: 16px 0;
+        }
+    }
+}
+
+#finances-view {
+    justify-content: space-between;
+    padding-top: 5px;
+    h3 {
+        margin-bottom: 15px;
+    }
+}
+
+.card-img-top {
+    width: 100%;
+    height: 6vw;
+    object-fit: cover;
+}
+
+.navbar {
+    margin-bottom: 5px;
+    .navbar-nav {
+        margin-left: auto;
+    }
+    .nav-item {
+        font-family: $default-font;
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin: 0 2.5rem;
+        .nav-link {
+            color: black;
+            transition: color 200ms;
+            &:hover {
+                color: grey;
+            }
+        }
+    }
+}
+
+@import "responsive";

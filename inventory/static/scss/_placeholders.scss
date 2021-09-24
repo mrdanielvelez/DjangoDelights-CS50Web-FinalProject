@@ -1,0 +1,15 @@
+%gradient-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+}
+
+%boxshadow-effect {
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.50);
+    transition: box-shadow 200ms ease-in-out;
+    &:hover, &:focus {
+        box-shadow: none;
+    }
+}

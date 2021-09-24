@@ -1,11 +1,26 @@
-from django.shortcuts import render, redirect
+import json
+from datetime import datetime
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.serializers.json import Serializer
 from django.db import IntegrityError
-from models import *
+from django.http.response import JsonResponse
+from django.shortcuts import redirect, render
+from django.utils.encoding import smart_text
+from django.views.decorators import csrf
+from django.views.decorators.csrf import csrf_exempt
+
+from .models import *
+
+
+class JSONSerializer(Serializer):
+    def get_dump_object(self, obj):
+        self._current["id"] = smart_text(obj._get_pk_val(), strings_only=True)
+        return self._current
 
 def index(request):
-    return render("inventory/index.html")
+    return render(request, "inventory/app.html")
 
 def register(request):
     if request.method == "POST":
@@ -21,65 +36,70 @@ def register(request):
                 "message": "Email address is already registered."
             })
         login(request, user)
-        redirect("index")
+        return redirect("index")
 
-    return render("inventory/register.html")
+    return render(request, "inventory/register.html")
 
-def login(request):
+def login_view(request):
     if request.method == "POST":
         email = request.POST["email"]
         password = request.POST["password"]
         user = authenticate(request, username=email, password=password)
         if user is not None:
             login(request, user)
-            redirect("inventory")
+            return redirect("index")
         else:
-            return render("inventory/login.html", {
+            return render(request, "inventory/login.html", {
                 "message": "Invalid credentials."
             })
 
-    return render("inventory/login.html")
+    return render(request, "inventory/login.html")
 
-def logout(request):
+def logout_view(request):
     logout(request)
-    return redirect("inventory/index.html")
+    return redirect("login")
 
+@csrf_exempt
 @login_required
-def inventory(request):
-    ingredients = Ingredient.objects.all()
-    return render(request, "inventory/inventory.html", {
-        "ingredients": ingredients
-    })
+def app(request, feature):
+    if feature == "inventory":
+        ingredients = Ingredient.objects.all()
+        return JsonResponse(JSONSerializer().serialize(ingredients), safe=False)
+    elif feature == "menu":
+        items = MenuItem.objects.all()
+        return JsonResponse(JSONSerializer().serialize(items), safe=False)
+    elif feature == "purchases":
+        purchases = Purchase.objects.all().order_by("-timestamp")
+        all_purchases = []
+        for purchase in purchases:
+            print(purchase)
+            all_purchases.append({
+                "menu_item": purchase.menu_item.name,
+                "timestamp": f"{datetime.strftime(purchase.timestamp, '%b %d, %Y at %I:%M %p %Z')}"
+            })
+        return JsonResponse(all_purchases, safe=False)
+    elif feature == "finances":
+        purchases = Purchase.objects.all()
+        revenue = 0
+        cost = 0
+        for purchase in purchases:
+            menu_item = purchase.menu_item
+            revenue += float(menu_item.price)
+            for requirement in menu_item.requirements.all():
+                cost += requirement.quantity * float(requirement.ingredient.unit_price)
+        profit = float(revenue) - cost
+        return JsonResponse({
+            "revenue": "{:,.2f}".format(round(revenue, 2)),
+            "cost": "{:,.2f}".format(round(cost, 2)),
+            "profit": "{:,.2f}".format(round(profit, 2))
+            })
+    else:
+        return JsonResponse({"error": "Invalid app feature."}, status=400)
 
+@csrf_exempt
 @login_required
-def menu(request):
-    menu_items = MenuItem.objects.all()
-    return render(request, "inventory/menu.html", {
-        "menu_items": menu_items
-    })
-
-@login_required
-def purchases(request):
-    purchases = Purchase.objects.all()
-    return render(request, "inventory/purchases.html", {
-        "purchases": purchases
-    })
-
-@login_required
-def finances(request):
-    purchases = Purchase.objects.all()
-    revenue = 0
-    cost = 0
-    for purchase in purchases:
-        menu_item = purchase.menu_item
-        revenue += menu_item.price
-        for requirement in menu_item.requirements:
-            cost += requirement.quantity * requirement.ingredient.unit_price
-    profit = revenue - cost
-    print(revenue, cost, profit)
-    return render(request, "inventory/finances.html", {
-        "revenue": revenue,
-        "cost": cost,
-        "profit": profit
-    })
-    
+def modify(request):
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        if data.get("ingredient_id") is not None:
+            pass

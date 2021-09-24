@@ -1,0 +1,39 @@
+{% extends "inventory/base.html" %}
+
+{% block content %}
+    <div id="app">
+        <nav>
+            <button id="menu">Menu</button>
+            <button id="inventory">Inventory</button>
+            <button id="purchases">Purchases</button>
+            <button id="finances">Finances</button>
+        </nav>
+        <hr>
+        <div id="interface">
+            <div id="menu-view">
+            </div>
+            <div id="ingredients-view">
+                <ul>
+                </ul>
+            </div>
+            <div id="purchases-view">
+                <ul>
+                </ul>
+            </div>
+            <div id="finances-view">
+                <div class="metric" id="revenue">
+                    <h3>Revenue</h3>
+                    <h1></h1>
+                </div>
+                <div class="metric" id="cost">
+                    <h3>Cost</h3>
+                    <h1></h1>
+                </div>
+                <div class="metric" id="profit">
+                    <h3>Profit</h3>
+                    <h1></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
