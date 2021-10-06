@@ -81,17 +81,17 @@ def app(request, feature):
     elif feature == "finances":
         purchases = Purchase.objects.all()
         revenue = 0
-        cost = 0
+        expenses = 0
         for purchase in purchases:
             menu_item = purchase.menu_item
             revenue += float(menu_item.price)
             for requirement in menu_item.requirements.all():
-                cost += requirement.quantity * float(requirement.ingredient.unit_price)
-        profit = float(revenue) - cost
+                expenses += requirement.quantity * float(requirement.ingredient.unit_price)
+        profit = float(revenue) - expenses
         return JsonResponse({
             "revenue": "{:,.2f}".format(round(revenue, 2)),
-            "cost": "{:,.2f}".format(round(cost, 2)),
-            "profit": "{:,.2f}".format(round(profit, 2))
+            "profit": "{:,.2f}".format(round(profit, 2)),
+            "expenses": "{:,.2f}".format(round(expenses, 2))
             })
     else:
         return JsonResponse({"error": "Invalid app feature."}, status=400)

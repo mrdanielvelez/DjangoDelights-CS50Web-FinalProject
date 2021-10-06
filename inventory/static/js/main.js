@@ -102,10 +102,10 @@ function loadFinances(pop=true) {
         document.querySelector("#ingredients-view").style.display = "none";
         document.querySelector("#purchases-view").style.display = "none";
         document.querySelector("#finances-view").style.display = "flex";
-        document.querySelector("#revenue > h1").innerHTML = `$${data.revenue}`;
-        document.querySelector("#cost > h1").innerHTML = `$${data.cost}`;
         document.querySelector("#profit > h1").innerHTML = `$${data.profit}`;
-        if (pop) history.pushState({section: "Finances"}, "", "#purchases");
+        document.querySelector("#revenue > h1").innerHTML = `$${data.revenue}`;
+        document.querySelector("#expenses > h1").innerHTML = `$${data.expenses}`;
+        if (pop) history.pushState({section: "Finances"}, "", "#finances");
     })
 }
 
