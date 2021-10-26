@@ -2,6 +2,8 @@
 
 ## Video Demo: https://youtu.be/ZDbdKcrhRsY
 
+![YT Thumbnail](https://user-images.githubusercontent.com/85040841/138975266-5d8d1934-8ded-4596-9b94-2887eeb44c01.png)
+
 ## Distinctiveness and Complexity:
 I made a restaurant manager using Django on the back-end and JavaScript on the front-end. The project uses a REST API in order to be a single-page web app. I focused on improving my front-end creative skills while creating this final project, as I believed that my CSS/SCSS needed to be improved after going over my previous projects for this course. More specifically, I wanted to become better at responsive design and advanced CSS. I decided to learn Figma and use it to design a mockup for the project. I chose a modern color scheme that reflected the theme of a lighthearted bakery. The app has four main features: 1. A "Menu" interface, which displays all of the restaurants menu items, containing an image and a "View Recipe" button. After clicking that button, the user gets shown the ingredient requirements for the recipe. 2. An "Inventory" interface, which contains all of the restaurant's ingredients and corresponds to individual recipes. 3. A "Purchases" interface, which displays all of the purchases that occured in the history of the restaurant, including the item name and the date and time of the purchase. 4. A "Finances" interface, which displays the profit, revenue, and expense information for the restaurant. The first three interfaces all have a form at the top of the display area which enables the user to add database entries for that specific interface. Lastly, this was also my final project for Codecademy's Django Skill Path, which I took simultaneously with CS50 Web, as I wanted to really understand the fundamentals of Django.
 
