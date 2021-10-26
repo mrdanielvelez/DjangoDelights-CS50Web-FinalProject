@@ -36,6 +36,46 @@
             div {
                 height: 80%;
             }
+            .card {
+                height: 85%;
+            }
+        }
+    }
+    #finances-view {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+    }
+    #new-item {
+        input {
+            width: 8rem;
+            margin-left: 3px;
+        }
+        button {
+            margin-left: 1rem;
+            margin-top: 1rem;
+        }
+    }
+    #new-ingredient {
+        input {
+            width: 5rem;
+        }
+        button {
+            margin-left: 0;
+            margin-top: 1rem;
+        }
+    }
+    #new-purchase {
+        input {
+           width: 16rem !important;
+        }
+        input[type=datetime-local] {
+            margin-left: 0;
+            margin-top: 1rem;
+        }
+        button {
+            margin-left: 0;
+            margin-top: 1rem;
         }
     }
     #acc {

@@ -3,36 +3,58 @@
 {% block content %}
     <div id="app">
         <nav>
-            <button id="menu">Menu</button>
-            <button id="inventory">Inventory</button>
-            <button id="purchases">Purchases</button>
-            <button id="finances">Finances</button>
+            <button class="nav" id="menu">Menu</button>
+            <button class="nav" id="inventory">Inventory</button>
+            <button class="nav" id="purchases">Purchases</button>
+            <button class="nav" id="finances">Finances</button>
         </nav>
         <hr>
         <div id="interface">
             <div id="menu-view">
             </div>
-            <div id="ingredients-view">
+            <div id="inventory-view">
+                <form id="new-ingredient" method="POST">
+                    <input required type="text" id="ingredient_name" name="ingredient_name" placeholder="Ingredient">
+                    <input required type="number" id="quantity" name="quantity" placeholder="Quantity">
+                    <input required type="text" id="unit" name="unit" placeholder="Unit Type">
+                    <input required type="number" id="unit_price" name="unit_price" placeholder="Unit Price" step="0.01">
+                    <button type="submit">Add</button>
+                </form>
                 <ul>
                 </ul>
             </div>
             <div id="purchases-view">
+                <form id="new-purchase" method="POST">
+                    <input required list="menu_items" type="text" id="purchased_item" name="purchased_item" placeholder="Purchase">
+                    <datalist id="menu_items">
+                        {% for name in item_names %}
+                            <option value="{{ name }}">
+                        {% endfor %}
+                    </datalist>
+                    <input required type="datetime-local" id="date_time" name="date_time">
+                    <select disabled required id="timezone" name="timezone">
+                        <option value="UTC">UTC</option>
+                    </select>
+                    <button type="submit">Add</button>
+                </form>
                 <ul>
                 </ul>
             </div>
             <div id="finances-view">
                 <div class="metric" id="profit">
                     <h3>Profit</h3>
-                    <h1></h1>
+                    <h2></h2>
                 </div>
                 <div class="metric" id="revenue">
                     <h3>Revenue</h3>
-                    <h1></h1>
+                    <h2></h2>
                 </div>
                 <div class="metric" id="expenses">
                     <h3>Expenses</h3>
-                    <h1></h1>
+                    <h2></h2>
                 </div>
+            </div>
+            <div id="recipe-view">
             </div>
         </div>
     </div>

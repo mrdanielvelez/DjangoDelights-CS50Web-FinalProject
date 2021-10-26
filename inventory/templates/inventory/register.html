@@ -10,6 +10,9 @@
         </svg>
         <h1>Register for a new account</h1>
         <hr>
+        {% if message %}
+            <h5>{{ message }}</h5>
+        {% endif %}
         <form id="register" method="post">
             {% csrf_token %}
             <input required type="text" name="full_name" placeholder="Full Name">

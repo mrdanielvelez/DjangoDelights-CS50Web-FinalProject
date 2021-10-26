@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
-from django.db import models
 from django.core.validators import MinValueValidator
+from django.db import models
+from django.utils import timezone
+
 
 class User(AbstractUser):
     pass
@@ -33,7 +35,7 @@ class RecipeRequirement(models.Model):
 
 class Purchase(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="purchases")
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(default=timezone.now)
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE, related_name="purchases")
 
     def __str__(self):

@@ -87,7 +87,11 @@ html {
 }
 
 #app #interface div .card {
-  height: 90%;
+  height: 85%;
+}
+
+#app #interface div .card-body {
+  overflow: hidden;
 }
 
 #app .recipe-button {
@@ -101,6 +105,11 @@ html {
 
 #app .recipe-button:hover, #app .recipe-button:focus {
   opacity: 100%;
+}
+
+#app .del-button {
+  font-size: 0.75rem;
+  margin-left: 20px;
 }
 
 #acc {
@@ -185,10 +194,91 @@ html {
   margin-bottom: 15px;
 }
 
+#recipe-view {
+  justify-content: space-between;
+}
+
+#recipe-view #recipe-main {
+  flex-direction: row;
+  overflow: hidden !important;
+}
+
+#recipe-view #recipe-main img {
+  height: 30vh;
+}
+
+#recipe-view #recipe-info {
+  flex-direction: column;
+}
+
+#new-ingredient {
+  margin: 0 0 1rem 0.75rem;
+}
+
+#new-ingredient button {
+  font-size: 1rem;
+  margin-left: 1rem;
+  border-radius: 0;
+}
+
+#new-ingredient input, #new-ingredient select {
+  padding: 5px;
+}
+
+#new-ingredient input {
+  width: 10rem;
+}
+
+#new-purchase {
+  margin: 0 0 1rem 0.75rem;
+}
+
+#new-purchase button {
+  font-size: 1rem;
+  margin-left: 1rem;
+  border-radius: 0;
+}
+
+#new-purchase input, #new-purchase select {
+  padding: 5px;
+}
+
+#new-purchase input[type=text] {
+  width: 33%;
+}
+
+#new-purchase input[type=datetime-local] {
+  margin-left: 0.75rem;
+}
+
+#new-purchase select {
+  margin-left: 0.75rem;
+}
+
+#new-item {
+  margin: 0 0 1rem 0.75rem;
+  margin: 0 0 1rem 0;
+}
+
+#new-item button {
+  font-size: 1rem;
+  margin-left: 1rem;
+  border-radius: 0;
+}
+
+#new-item input, #new-item select {
+  padding: 5px;
+}
+
+#new-item input {
+  width: 10rem;
+}
+
 .card-img-top {
   width: 100%;
   height: 6vw;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .navbar {
@@ -254,6 +344,40 @@ html {
   }
   #app #interface > div div {
     height: 80%;
+  }
+  #app #interface > div .card {
+    height: 85%;
+  }
+  #finances-view {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+  }
+  #new-item input {
+    width: 8rem;
+    margin-left: 3px;
+  }
+  #new-item button {
+    margin-left: 1rem;
+    margin-top: 1rem;
+  }
+  #new-ingredient input {
+    width: 5rem;
+  }
+  #new-ingredient button {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  #new-purchase input {
+    width: 16rem !important;
+  }
+  #new-purchase input[type=datetime-local] {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  #new-purchase button {
+    margin-left: 0;
+    margin-top: 1rem;
   }
   #acc {
     padding-left: 0;
